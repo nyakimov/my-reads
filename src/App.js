@@ -38,16 +38,9 @@ class BooksApp extends React.Component {
   changeBookShelf(book, shelf) {
       BooksAPI.update(book, shelf).then(() => {
         book.shelf = shelf;
-
-        let bookIdx = this.state.books.indexOf(book)
-        let books = this.state.books
-
-        if (bookIdx !== -1) {
-          books[bookIdx] = book
-        }
-        else 
-          books.push(book)
-        this.setState({books})
+        this.setState(state => ({
+          books: state.books.filter(b => b.id !== book.id).concat([book])
+        }))
       })
   }  
 
@@ -66,10 +59,10 @@ class BooksApp extends React.Component {
 
         <Route path="/search" render={({history}) => (
           <BookSearch 
-            onCreateContact={(contact) => {
-              this.createContact(contact)
-              history.push('/')
-            }}
+            books={this.state.books}
+            onShelfChange={(book, shelf) => (
+              this.changeBookShelf(book, shelf)
+            )}
           />
         )}/>
       </div>
