@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import escapeRegExp from 'escape-string-regexp'
 import Book from './Book'
 import * as BooksAPI from '../utils/BooksAPI'
 
 class BookSearch extends Component {
     static propTypes = {
-        books: PropTypes.array,
+        myBooks: PropTypes.array,
         onShelfChange: PropTypes.func.isRequired
     }
 
@@ -40,7 +39,7 @@ class BookSearch extends Component {
                         arr.map(mapObj => mapObj.id).indexOf(book.id) === pos
                     ))
                     //Sync the found books with my books
-                    uniqueBooks = this.mergeArr(uniqueBooks, this.props.books);
+                    uniqueBooks = this.mergeArr(uniqueBooks, this.props.myBooks);
                     this.setState(state => ({
                         foundBooks: uniqueBooks
                     }))

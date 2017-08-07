@@ -5,24 +5,24 @@ import BookShelf from './BookShelf'
 
 class BookShelvesList extends Component {
     static propTypes = {
-        books: PropTypes.array,
+        myBooks: PropTypes.array,
         onShelfChange: PropTypes.func.isRequired
     }
 
     render () {
-        const {books} = this.props
+        const {myBooks} = this.props
         let bookShelves = [
             {
                 name: "Currently Reading",
-                books: books.filter(book => book.shelf === "currentlyReading")
+                books: myBooks.filter(book => book.shelf === "currentlyReading")
             },
             {
                 name: "Want To Read",
-                books: books.filter(book => book.shelf === "wantToRead")
+                books: myBooks.filter(book => book.shelf === "wantToRead")
             },
             {
                 name: "Read",
-                books: books.filter(book => book.shelf === "read")
+                books: myBooks.filter(book => book.shelf === "read")
             },
         ]
         
