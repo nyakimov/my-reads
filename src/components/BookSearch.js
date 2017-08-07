@@ -16,6 +16,18 @@ class BookSearch extends Component {
         foundBooks: []
     }
 
+    mergeArr = (arr,Arr) => {
+        return arr.map((item) => {
+            Arr.map((Item) => {
+                if(Item.id === item.id) {
+                    item.shelf = Item.shelf
+                    return
+                }
+            })
+            return item
+        })
+    }    
+
     searchBooks = (query) => {
         if (query !== "") {
             BooksAPI.search(query, 20).then((books) => {
@@ -27,6 +39,8 @@ class BookSearch extends Component {
                     let uniqueBooks = books.filter((book, pos, arr) => (
                         arr.map(mapObj => mapObj.id).indexOf(book.id) === pos
                     ))
+                    //Sync the found books with my books
+                    uniqueBooks = this.mergeArr(uniqueBooks, this.props.books);
                     this.setState(state => ({
                         foundBooks: uniqueBooks
                     }))
