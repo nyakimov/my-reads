@@ -26,8 +26,8 @@ class BookShelf extends Component {
                 </ol>
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default BookShelf
+export default BookShelf;

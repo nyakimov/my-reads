@@ -19,12 +19,12 @@ class BookSearch extends Component {
         return arr.map((item) => {
             Arr.map((Item) => {
                 if(Item.id === item.id) {
-                    item.shelf = Item.shelf
-                    return
+                    item.shelf = Item.shelf;
+                    return;
                 }
             })
-            return item
-        })
+            return item;
+        });
     }    
 
     searchBooks = (query) => {
@@ -37,27 +37,26 @@ class BookSearch extends Component {
                     //How does it impact efficiency ?
                     let uniqueBooks = books.filter((book, pos, arr) => (
                         arr.map(mapObj => mapObj.id).indexOf(book.id) === pos
-                    ))
+                    ));
                     //Sync the found books with my books
                     uniqueBooks = this.mergeArr(uniqueBooks, this.props.myBooks);
                     this.setState(state => ({
                         foundBooks: uniqueBooks
-                    }))
+                    }));
                 }
-            })
+            });
         }
         //Empty the list of books if the search bar is an empty string
         else {
             this.setState(state => ({
                 foundBooks: []
-            }))
+            }));
         }
-            
     }
 
     updateQuery = (query) => {
-        this.setState({query})
-        this.searchBooks(query)
+        this.setState({query});
+        this.searchBooks(query);
     }
 
     render() {
@@ -95,8 +94,8 @@ class BookSearch extends Component {
                     </ol>
                 </div>
           </div>
-        )
+        );
     }
 }
 
-export default BookSearch
+export default BookSearch;

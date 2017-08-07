@@ -46,11 +46,11 @@ class BookShelvesList extends Component {
                 <div className="open-search">
                     <Link
                         to="/search"
-                    > Add a Book</Link>   
+                    > Add a Book</Link>
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default BookShelvesList
+export default BookShelvesList;
