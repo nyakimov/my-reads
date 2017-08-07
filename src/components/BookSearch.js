@@ -21,8 +21,14 @@ class BookSearch extends Component {
             BooksAPI.search(query, 20).then((books) => {
                 //Handle the error response
                 if (!books.error) {
+                    //Filter out the duplicate results
+                    // or ES6: let uniqueBooks = [...new Set(books)];
+                    //How does it impact efficiency ?
+                    let uniqueBooks = books.filter((book, pos, arr) => (
+                        arr.map(mapObj => mapObj.id).indexOf(book.id) === pos
+                    ))
                     this.setState(state => ({
-                        foundBooks: books
+                        foundBooks: uniqueBooks
                     }))
                 }
             })
